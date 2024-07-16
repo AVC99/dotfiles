@@ -1,0 +1,28 @@
+import = ["~/.config/alacritty/themes/aura.toml"]
+[env]
+TERM = "xterm-256color"
+
+[shell]
+program = "/usr/bin/zsh"
+
+[window]
+padding = { x = 1, y = 1 }
+dynamic_padding = true
+decorations = "Full"
+dimensions = { columns = 100, lines = 40 }
+opacity = 0.7
+blur = true
+decorations_theme_variant = "Dark"
+
+[font]
+normal = { family = "MonaspiceNe Nerd Font", style = "Regular" }
+bold = { family = "MonaspiceNe Nerd Font", style = "Italic" }
+italic = { family = "MonaspiceNe Nerd Font", style = "Bold" }
+bold_italic = { family = "MonaspiceNe Nerd Font", style = "Bold Italic" }
+size = 12
+
+[selection]
+save_to_clipboard = true
+
+[cursor]
+style = { shape = "block", blinking = "On" }
