@@ -13,10 +13,11 @@ vim.g.have_nerd_font = true
 --  For more options, you can see `:help option-list`
 
 -- Make line numbers default
-vim.opt.number = true
+
+--vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = "a"
@@ -66,7 +67,7 @@ vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 15
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -142,7 +143,35 @@ vim.opt.rtp:prepend(lazypath)
 --
 -- NOTE: Here is where you install your plugins.
 require("lazy").setup({
-
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		opts = {
+			char = "│", -- character used for indentation lines
+			char_highlight_list = {
+				"IndentBlanklineChar1",
+				"IndentBlanklineChar2",
+				"IndentBlanklineChar3",
+				"IndentBlanklineChar4",
+				"IndentBlanklineChar5",
+				"IndentBlanklineChar6",
+			},
+			use_treesitter = true, -- enable Treesitter support
+			show_trailing_blankline_indent = false, -- adjust based on your preference
+			show_first_indent_level = true,
+			space_char_blankline = " ",
+		},
+		config = function()
+			require("ibl").setup()
+		end,
+	},
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = true,
+		-- use opts = {} for passing setup options
+		-- this is equivalent to setup({}) function
+	},
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
@@ -304,6 +333,9 @@ require("lazy").setup({
 				--   },
 				-- },
 				-- pickers = {}
+				defaults = {
+					file_ignore_patterns = { "node_modules/", ".git/", "*.lock", "*.log" },
+				},
 				extensions = {
 					["ui-select"] = {
 						require("telescope.themes").get_dropdown(),
